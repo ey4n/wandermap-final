@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Itinerary {
+  id           String                 @id @default(cuid())
+  userEmail    String
+  createdDate  DateTime               @default(now())
+  title        String
+  desc         String
+  upvotes      Int?
+  reviews      Review[]
+  isPublished  Boolean
+  user         User                   @relation(fields: [userEmail], references: [email])
+  savedByUsers UserItinerary[]
+  category     Category[]
+  budget       Int?
+  attractions  ItineraryAttractions[]
+
+  @@map(name: "itineraries")
+}
+
+model Review {
+  id                 String     @id @default(cuid())
+  createdByUserEmail String
+  createdByUser      User?      @relation(fields: [createdByUserEmail], references: [email])
+  createdDate        DateTime   @default(now())
+  comment            String?
+  rating             Int?
+  Itinerary          Itinerary? @relation(fields: [itineraryId], references: [id])
+  itineraryId        String?
+  imageUrl           String[]
+
+  @@map(name: "reviews")
+}
+
+model Attraction {
+  id                String                @id @default(cuid())
+  name              String
+  latitude          Float
+  longitude         Float
+  description       String
+  budget            Int
+  category          Category
+  itineraries       ItineraryAttractions[]
+  attractionImage   String?
+  nearbyAttractions Attraction[]          @relation("NearbyAttractions")
+  referencedBy      Attraction[]          @relation("NearbyAttractions")
+
+  @@map(name: "attractions")
+}
+
+
+model ItineraryAttractions {
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id])
+  itineraryId String
+
+  attraction   Attraction @relation(fields: [attractionId], references: [id])
+  attractionId String
+
+  orderIndex   Int
+
+  @@id([itineraryId, attractionId])
+}
+
+
+enum Category {
+  Nightlife
+  Nature
+  Scenic
+  Sports
+  Food
+  Cultural
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String  @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id               String          @id @default(cuid())
+  name             String?
+  email            String?         @unique
+  emailVerified    DateTime?
+  image            String?
+  accounts         Account[]
+  sessions         Session[]
+  password         String?
+  Itinerary        Itinerary[]
+  Review           Review[]
+  savedItineraries UserItinerary[]
+}
+
+model VerificationToken {
+  id         Int      @id @default(autoincrement())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model UserItinerary {
+  id          String    @id @default(cuid())
+  userEmail   String
+  itineraryId String
+  user        User      @relation(fields: [userEmail], references: [email])
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id])
+
+  @@unique([userEmail, itineraryId])
+}

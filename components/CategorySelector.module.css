@@ -1,0 +1,15 @@
+.categoryBox {
+    border: 1px solid #000;
+    padding: 16px;
+    margin: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 40%;
+  }
+  
+  .chooseMapButton {
+    margin-bottom: 8px;
+    width: calc(33% - 8px);
+  }
+  

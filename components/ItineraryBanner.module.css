@@ -1,0 +1,68 @@
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--mantine-spacing-md);
+  border-radius: var(--mantine-radius-sm);
+  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
+  border: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-8));
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+}
+
+.image {
+  max-width: 40%;
+  margin-right: var(--mantine-spacing-md);
+  
+  @media (max-width: $mantine-breakpoint-sm) {
+    max-width: 100%;
+    margin-right: 0;
+  }
+}
+
+.body {
+  flex: 1;
+  padding: var(--mantine-spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  font-family: Greycliff CF, var(--mantine-font-family);
+  line-height: 1;
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.viewMoreButton {
+  /* background-color: #2ea10e; */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  position: absolute;
+  bottom: var(--mantine-spacing-md);
+  right: var(--mantine-spacing-md);
+}
+
+.upvoteButtonContainer button,
+.upvoteButtonContainer .upvoteCount {
+  visibility: visible !important;
+  position: absolute;
+  bottom: calc(25% + var(--mantine-spacing-md)); 
+  left: calc(25% + var(--mantine-spacing-md));
+}
+
+.bookmarksButton {
+  /* background-color: #ae28d0; */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  position: absolute;
+  bottom: calc(10% + var(--mantine-spacing-md));
+  left: calc(25% + var(--mantine-spacing-md));
+}
