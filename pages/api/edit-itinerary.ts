@@ -43,7 +43,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       });
 
-      return itineraryUpdate; 
+      await prisma.itineraryAttractions.deleteMany({
+        where: {
+          itineraryId: id,
+        },
+      });
+
+      const updatedAttractions = await prisma.itineraryAttractions.createMany({
+        data: attractions.map(attraction => ({
+          itineraryId: id,
+          attractionId: attraction.id,
+          orderIndex: attraction.order,
+        })),
+        skipDuplicates: true, 
+      });
+
+      return { 
+        title: title,
+        desc: desc,
+        updatedAttractions: updatedAttractions.count 
+      };
     });
 
     res.status(200).json(updatedItinerary);
