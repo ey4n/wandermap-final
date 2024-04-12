@@ -2,7 +2,7 @@
 
 ## Final Deliverables
 
-1. [Source Code]([/app])
+1. [Source Code](/app)
 2. [Software Requirements Specification](<[/final-submission/DateGoWhere%20Software%20Requirements%20Specification.pdf](https://github.com/ey4n/wandermap-final/blob/main/Final%20Submission/Software%20Requirements%20Specification.pdf)>)
 3. [Demo Video](<[/final-submission/demo-video.mp4](https://github.com/ey4n/wandermap-final/blob/main/Final%20Submission/Team%20One%20Demo.mp4)>)
 4. [Diagrams](<[/final-submission/diagrams](https://github.com/ey4n/wandermap-final/tree/main/Final%20Submission/Diagrams)>)
