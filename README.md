@@ -2,7 +2,7 @@
 
 ## Final Deliverables
 
-1. Source Code Available at [(https://github.com/ey4n/wandermap-final)](https://github.com/ey4n/wandermap-final)
+1. [Source Code](/app) 
 2. [Software Requirements Specification](/Final-Submission/Software%20Requirements%20Specification.pdf)
 3. [Diagrams](/Final-Submission/Diagrams)
    1. [Use Case Diagram](/Final-Submission//Diagrams/UseCaseDiagram.jpg)
