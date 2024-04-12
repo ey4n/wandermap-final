@@ -2,7 +2,7 @@
 
 ## Final Deliverables
 
-1. [Source Code]
+1. [Source Code](/app)
 2. [Software Requirements Specification](/Final-Submission/Software%20Requirements%20Specification.pdf)
 3. [Demo Video](/Final-Submission/Team%One%Demo.mp4)
 4. [Diagrams](/Final-Submission/Diagrams)
