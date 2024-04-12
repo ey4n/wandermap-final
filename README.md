@@ -1,4 +1,4 @@
-# DateGoWhere
+# Wandermap
 
 ## Final Deliverables
 
